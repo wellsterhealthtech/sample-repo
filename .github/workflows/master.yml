@@ -6,7 +6,7 @@ on:
 jobs:
   build:
    name: trigger
-   runs-on: windows-latest
+   runs-on: ubuntu-latest
    steps:
       - uses: convictional/trigger-workflow-and-wait@v1.3.0
         with:
@@ -15,9 +15,6 @@ jobs:
           ref: ${{ github.event.repository.default_branch || 'main' }}
           github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
           workflow_file_name: main.yml
-          client_payload: '{"test": "true"}'
-          wait_interval: 11
-          last_workflow_interval: 5
           trigger_workflow: true
           wait_workflow: true
           propagate_failure: true
