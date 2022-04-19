@@ -14,7 +14,7 @@ jobs:
           repo: test-automation
           ref: ${{ github.event.repository.default_branch || 'main' }}
           github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          workflow_file_name: main.yml
+          workflow_file_name: master.yml
           trigger_workflow: true
           wait_workflow: true
           propagate_failure: true
