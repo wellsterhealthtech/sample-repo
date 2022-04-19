@@ -1,5 +1,14 @@
-- name: Repository Dispatch
-        uses: convictional/trigger-workflow-and-wait@v1.3.0
+name: Repository Dispatch
+on:
+ push:
+  branches:
+    - main
+jobs:
+  build:
+   name: trigger
+   runs-on: windows-latest
+   steps:
+      - uses: convictional/trigger-workflow-and-wait@v1.3.0
         with:
           owner: ${{ github.repository_owner }}
           repo: test-automation
