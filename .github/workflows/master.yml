@@ -17,6 +17,13 @@ jobs:
           github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
           workflow_file_name: sprechstunde.yml
           trigger_workflow: true
+      - name: PR Number
+        shell: bash
+        run: |
+          echo github.event.number = ${{ github.event.number  }}
+          echo github.event.pull_request.number = ${{ github.event.pull_request.number }}
+          echo github.event.issue.number = ${{ github.event.issue.number }}
+       
           wait_workflow: true
           propagate_failure: true
           shell: bash
