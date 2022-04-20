@@ -19,3 +19,6 @@ jobs:
           trigger_workflow: true
           wait_workflow: true
           propagate_failure: true
+          shell: bash
+          run: |
+               echo  ${{github.event.number}}
