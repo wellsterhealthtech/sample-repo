@@ -19,7 +19,7 @@ jobs:
           repo: test-automation
           ref: ${{ github.event.repository.default_branch || 'main' }}
           github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          client_payload: '{"ref":"${{ github.ref }}","pr_id":${{ github.event.pull_request.number }}}'
+          client_payload: '{"inputs":${{ github.event.pull_request.number }}}'
           workflow_file_name: sprechstunde.yml
           trigger_workflow: true
           wait_workflow: true
@@ -27,6 +27,5 @@ jobs:
       - name: checking client payload
         shell: bash
         run: |
-          echo github.event.client_payload.ref   = ${{ github.event.client_payload.ref  }}
-          echo github.event.client_payload.pr_id  = ${{ github.event.client_payload.pr_id }}    
+          echo github.event.client_payload.inputs  = ${{ github.event.client_payload.inputs }}    
           
