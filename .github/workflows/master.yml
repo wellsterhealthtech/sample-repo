@@ -14,7 +14,7 @@ jobs:
         run: |
           echo github.event.number = ${{ github.event.number  }}
           echo github.event.pull_request.number = ${{ github.event.pull_request.number }}
-          echo pr_number 
+          echo  ${{  env.pr_number }}
       - uses: convictional/trigger-workflow-and-wait@v1.3.0
         with:
           owner: ${{ github.repository_owner }}
