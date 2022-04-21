@@ -2,8 +2,7 @@ name: Run Selenium tests
 on:
   pull_request:
    branches: [ main ]
-env: 
- pr_number: ${{ github.event.pull_request.number }}
+
 jobs:
   build:
    name: Tests
@@ -14,13 +13,13 @@ jobs:
         run: |
           echo github.event.number = ${{ github.event.number  }}
           echo github.event.pull_request.number = ${{ github.event.pull_request.number }}
-          echo  ${{  env.pr_number }}
       - uses: convictional/trigger-workflow-and-wait@v1.3.0
         with:
           owner: ${{ github.repository_owner }}
           repo: test-automation
           ref: ${{ github.event.repository.default_branch || 'main' }}
           github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          client_payload: '{"pr_id": "${{ github.event.pull_request.number }}"}'
           workflow_file_name: sprechstunde.yml
           trigger_workflow: true
           wait_workflow: true
