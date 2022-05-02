@@ -1,8 +1,6 @@
 name: Repository Dispatch
 on:
-  push:
-   branches: [ main ]
-  pull_request:
+ pull_request:
    branches: [ main ]
   
 jobs:
@@ -10,13 +8,11 @@ jobs:
    name: Repository Dispatch
    runs-on: ubuntu-latest
    steps:
-      - name: Fetching pull request number
+      - name: Echoing pull request number
         shell: bash
         run: |
-          echo github.event.number = ${{ github.event.number  }}
           echo github.event.pull_request.number = ${{ github.event.pull_request.number }}
-          echo ${{ github.event.pull_request.number }} > prId.txt
-
+      
       
       - uses: peter-evans/repository-dispatch@v2
         with:
@@ -24,5 +20,6 @@ jobs:
           repository: wellsterhealthtech/test-automation
           event-type: my-event
           client-payload: '{"prId": "${{ github.event.pull_request.number }}"}'
-          wait_workflow: true
+          
+          
           
